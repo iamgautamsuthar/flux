@@ -1,15 +1,23 @@
 #!/usr/bin/env node
 
 import axios from 'axios';
-import { x } from 'tar';
+import * as tar from 'tar'; // Use tar module correctly
 import yargs from 'yargs';
 import fs from 'fs';
 import path from 'path';
-import { hideBin } from 'yargs/helpers';
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+console.log('Hello from flux.js');
+
+// Get the current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const getPackageInformation = async (packageName) => {
     try {
-        const url = `https://registry.npmjs.org/${pkgName}`;
+        const url = `https://registry.npmjs.org/${packageName}`;
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
@@ -23,8 +31,8 @@ const downloadPackage = async (packageName) => {
         const data = await getPackageInformation(packageName);
         const version = data['dist-tags'].latest;
         const tarballUrl =
-            `https://registry.npmjs.org/${pkgName}/-/` +
-            `${pkgName}-${version}.tgz`;
+            `https://registry.npmjs.org/${packageName}/-/` +
+            `${packageName}-${version}.tgz`;
 
         const response = await axios({
             url: tarballUrl,
@@ -47,7 +55,13 @@ const downloadPackage = async (packageName) => {
 const extractPackage = async (packageName, filePath) => {
     try {
         const extractPath = path.join(__dirname, 'node_modules', packageName);
-        await x({ file: filePath, C: extractPath, strip: 1 });
+
+        // Ensure that the node_modules directory exists before extraction
+        if (!fs.existsSync(path.join(__dirname, 'node_modules'))) {
+            fs.mkdirSync(path.join(__dirname, 'node_modules'));
+        }
+
+        await tar.x({ file: filePath, C: extractPath, strip: 1 });
         console.log(`Package ${packageName} extracted successfully.`);
     } catch (error) {
         console.log(`Error while extracting package: ${error}`);
@@ -55,9 +69,10 @@ const extractPackage = async (packageName, filePath) => {
     }
 };
 
-yargs(hideBin(process.argv))
+// Yargs to handle the command
+yargs()
     .command(
-        'i <package>',
+        'install <package>',
         'Install a package from npm registry',
         (yargs) => {
             yargs.positional('package', {
@@ -66,9 +81,10 @@ yargs(hideBin(process.argv))
             });
         },
         (argv) => {
-            const pkgName = argv.package;
-            console.log(`Installing package: ${pkgName}...`);
-            downloadPackage(pkgName);
+            console.log(`Received command: install ${argv.package}`); // Debug log
+            const packageName = argv.package;
+            console.log(`Installing package: ${packageName}...`);
+            downloadPackage(packageName);
         }
     )
     .help().argv;

@@ -2,9 +2,9 @@
     "name": "flux",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "flux.js",
     "type": "module",
-    "bin":{
+    "bin": {
         "flux": "./flux.js"
     },
     "scripts": {
