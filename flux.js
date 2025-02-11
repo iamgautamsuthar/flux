@@ -17,6 +17,32 @@ const getPackageInformation = async (packageName) => {
     }
 };
 
+const downloadPackage = async (packageName) => {
+    try {
+        const data = await getPackageInformation(packageName);
+        const version = data['dist-tags'].latest;
+        const tarballUrl =
+            `https://registry.npmjs.org/${pkgName}/-/` +
+            `${pkgName}-${version}.tgz`;
+
+        const response = await axios({
+            url: tarballUrl,
+            responseType: 'stream',
+        });
+        const filePath = path.join(__dirname, `${packageName}-${version}.tgz`);
+        const writer = fs.createWriteStream(filePath);
+        response.data.pipe(writer);
+
+        writer.on('finish', () => {
+            console.log(`Package ${packageName} downloaded successfully.`);
+            extractPackage(packageName, filePath);
+        });
+    } catch (error) {
+        console.log(`Error while downloading package: ${error}`);
+        process.exit(1);
+    }
+};
+
 const extractPackage = async (packageName, filePath) => {
     try {
         const extractPath = path.join(__dirname, 'node_modules', packageName);
