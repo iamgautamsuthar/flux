@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 import axios from 'axios';
-import tar from 'tar';
+import { x } from 'tar';
 import yargs from 'yargs';
 import fs from 'fs';
 import path from 'path';
+import { hideBin } from 'yargs/helpers';
 
 const getPackageInformation = async (packageName) => {
     try {
@@ -46,7 +47,7 @@ const downloadPackage = async (packageName) => {
 const extractPackage = async (packageName, filePath) => {
     try {
         const extractPath = path.join(__dirname, 'node_modules', packageName);
-        await tar.x({ file: filePath, C: extractPath, strip: 1 });
+        await x({ file: filePath, C: extractPath, strip: 1 });
         console.log(`Package ${packageName} extracted successfully.`);
     } catch (error) {
         console.log(`Error while extracting package: ${error}`);
@@ -54,7 +55,7 @@ const extractPackage = async (packageName, filePath) => {
     }
 };
 
-yargs
+yargs(hideBin(process.argv))
     .command(
         'i <package>',
         'Install a package from npm registry',
