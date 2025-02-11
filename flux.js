@@ -53,3 +53,21 @@ const extractPackage = async (packageName, filePath) => {
         process.exit(1);
     }
 };
+
+yargs
+    .command(
+        'i <package>',
+        'Install a package from npm registry',
+        (yargs) => {
+            yargs.positional('package', {
+                describe: 'The name of the package to install',
+                type: 'string',
+            });
+        },
+        (argv) => {
+            const pkgName = argv.package;
+            console.log(`Installing package: ${pkgName}...`);
+            downloadPackage(pkgName);
+        }
+    )
+    .help().argv;
