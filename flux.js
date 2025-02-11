@@ -16,3 +16,14 @@ const getPackageInformation = async (packageName) => {
         process.exit(1);
     }
 };
+
+const extractPackage = async (packageName, filePath) => {
+    try {
+        const extractPath = path.join(__dirname, 'node_modules', packageName);
+        await tar.x({ file: filePath, C: extractPath, strip: 1 });
+        console.log(`Package ${packageName} extracted successfully.`);
+    } catch (error) {
+        console.log(`Error while extracting package: ${error}`);
+        process.exit(1);
+    }
+};
