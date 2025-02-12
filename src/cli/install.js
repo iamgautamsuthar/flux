@@ -1,4 +1,4 @@
-import downloadPackage from '../utils/install/download.js';
+import downloadPackage from '../core/install/download.js';
 
 const install = (packageName) => {
     console.log(`Installing package: ${packageName}...`);
