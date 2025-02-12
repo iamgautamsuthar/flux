@@ -2,10 +2,10 @@
     "name": "flux",
     "version": "1.0.0",
     "description": "",
-    "main": "flux.js",
+    "main": "./src/flux.js",
     "type": "module",
     "bin": {
-        "flux": "./flux.js"
+        "flux": "./src/flux.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"

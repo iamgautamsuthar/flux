@@ -1,4 +1,4 @@
-
+# iwr -useb https://raw.githubusercontent.com/iamgautamsuthar/flux/main/install.ps1 | iex
 ### Node ###
 # Logs
 logs
