@@ -1,6 +1,6 @@
 {
     "name": "flux",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Flux is a simple, lightweight package manager for managing dependencies in your project, allowing easy installation of npm packages.",
     "main": "./src/index.js",
     "type": "module",
