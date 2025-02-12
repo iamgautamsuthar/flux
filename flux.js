@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 import axios from 'axios';
-import * as tar from 'tar'; // Use tar module correctly
-import yargs from 'yargs';
+import * as tar from 'tar';
+import { Command } from 'commander';
+
+const program = new Command();
 import fs from 'fs';
 import path from 'path';
 
@@ -11,7 +13,6 @@ import { dirname } from 'path';
 
 console.log('Hello from flux.js');
 
-// Get the current directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -56,35 +57,35 @@ const extractPackage = async (packageName, filePath) => {
     try {
         const extractPath = path.join(__dirname, 'node_modules', packageName);
 
-        // Ensure that the node_modules directory exists before extraction
-        if (!fs.existsSync(path.join(__dirname, 'node_modules'))) {
-            fs.mkdirSync(path.join(__dirname, 'node_modules'));
+        const nodeModulesPath = path.join(__dirname, 'node_modules');
+        if (!fs.existsSync(nodeModulesPath)) {
+            fs.mkdirSync(nodeModulesPath);
+        }
+
+        if (!fs.existsSync(extractPath)) {
+            fs.mkdirSync(extractPath);
         }
 
         await tar.x({ file: filePath, C: extractPath, strip: 1 });
         console.log(`Package ${packageName} extracted successfully.`);
+        try {
+            fs.unlinkSync(filePath);
+            console.log('File deleted successfully.');
+        } catch (err) {
+            console.error('Error deleting file:', err);
+        }
     } catch (error) {
         console.log(`Error while extracting package: ${error}`);
         process.exit(1);
     }
 };
 
-// Yargs to handle the command
-yargs()
-    .command(
-        'install <package>',
-        'Install a package from npm registry',
-        (yargs) => {
-            yargs.positional('package', {
-                describe: 'The name of the package to install',
-                type: 'string',
-            });
-        },
-        (argv) => {
-            console.log(`Received command: install ${argv.package}`); // Debug log
-            const packageName = argv.package;
-            console.log(`Installing package: ${packageName}...`);
-            downloadPackage(packageName);
-        }
-    )
-    .help().argv;
+program
+    .command('install <package>')
+    .description('Install a package from npm registry')
+    .action((packageName) => {
+        console.log(`Installing package: ${packageName}...`);
+        downloadPackage(packageName);
+    });
+
+program.parse(process.argv);
