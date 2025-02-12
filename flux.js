@@ -45,7 +45,7 @@ const downloadPackage = async (packageName) => {
 
         writer.on('finish', () => {
             console.log(`Package ${packageName} downloaded successfully.`);
-            extractPackage(packageName, filePath);
+            extractPackage(packageName, version, filePath);
         });
     } catch (error) {
         console.log(`Error while downloading package: ${error}`);
@@ -53,7 +53,7 @@ const downloadPackage = async (packageName) => {
     }
 };
 
-const extractPackage = async (packageName, filePath) => {
+const extractPackage = async (packageName, version, filePath) => {
     try {
         const extractPath = path.join(__dirname, 'node_modules', packageName);
 
@@ -68,6 +68,7 @@ const extractPackage = async (packageName, filePath) => {
 
         await tar.x({ file: filePath, C: extractPath, strip: 1 });
         console.log(`Package ${packageName} extracted successfully.`);
+        addDependency(packageName, version);
         try {
             fs.unlinkSync(filePath);
             console.log('File deleted successfully.');
@@ -78,6 +79,30 @@ const extractPackage = async (packageName, filePath) => {
         console.log(`Error while extracting package: ${error}`);
         process.exit(1);
     }
+};
+
+const addDependency = (packageName, version) => {
+    const packageJsonPath = path.join(__dirname, 'package.json');
+    let packageData = {};
+
+    if (fs.existsSync(packageJsonPath)) {
+        const fileContent = fs.readFileSync(packageJsonPath, 'utf8');
+        packageData = JSON.parse(fileContent);
+    }
+
+    if (!packageData.dependencies) {
+        packageData.dependencies = {};
+    }
+
+    packageData.dependencies[packageName] = version;
+
+    fs.writeFileSync(
+        packageJsonPath,
+        JSON.stringify(packageData, null, 2),
+        'utf8'
+    );
+
+    console.log(`Added ${packageName}@${version} to dependencies.`);
 };
 
 program
