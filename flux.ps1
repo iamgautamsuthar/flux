@@ -7,9 +7,11 @@ $pathEnv = [System.Environment]::GetEnvironmentVariable("Path", [System.Environm
 Write-Host "Installing Flux package manager..."
 
 if (Test-Path $fluxDir) {
+    Write-Host "Removing existing Flux directory..."
     Remove-Item -Recurse -Force $fluxDir
 }
 
+Write-Host "Cloning Flux repository from GitHub..."
 git clone $repoUrl $fluxDir
 
 New-Item -ItemType Directory -Path $binDir -Force | Out-Null
@@ -26,10 +28,11 @@ if (Test-Path "$fluxDir\flux.cmd") {
 }
 
 if ($pathEnv -notlike "*$binDir*") {
+    Write-Host "Adding Flux to the system PATH..."
     [System.Environment]::SetEnvironmentVariable("Path", "$pathEnv;$binDir", [System.EnvironmentVariableTarget]::User)
     Write-Host "Added Flux to system PATH. Restart your terminal to apply changes."
 } else {
-    Write-Host "Flux is already in PATH."
+    Write-Host "Flux is already in the system PATH."
 }
 
 Write-Host "Flux installed successfully! Run 'flux --help' to get started."
