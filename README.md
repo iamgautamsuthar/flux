@@ -1,14 +1,14 @@
-# Flux - A Minimal Package Manager
+# **Flux - A Minimal Package Manager**
 
-Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, and now listing installed packages, Flux is steadily evolving. More features are on the way!
+Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, listing installed packages, and now updating packages, Flux is steadily evolving. More features are on the way!
 
 🚧 **Alpha Version**: Flux is still in its early development phase and not yet ready for production use. We welcome contributors to help shape its future!
 
 ---
 
-## � Features
+## **✨ Features**
 
-### ✅ Implemented
+### ✅ **Implemented**
 
 -   **Install Packages**: Download and add packages to `node_modules`.
 
@@ -28,9 +28,14 @@ Flux is a lightweight package manager designed to simplify dependency management
     flux list
     ```
 
-### 🔜 Upcoming Features
+-   **Update a Package**: Update a specific package to its latest version.
 
--   **Update Package** (`flux update package-name`): Update specific or all packages.
+    ```sh
+    flux update package-name
+    ```
+
+### 🔜 **Upcoming Features**
+
 -   **Search for Packages** (`flux search package-name`): Find packages from the registry.
 -   **Check for Updates** (`flux outdated`): List packages with newer versions.
 -   **Reinstall All Packages** (`flux reinstall`): Remove `node_modules` and reinstall dependencies.
@@ -42,7 +47,7 @@ Flux is a lightweight package manager designed to simplify dependency management
 
 ---
 
-## 💡 Contributing
+## 💡 **Contributing**
 
 Flux is open for contributions! If you have ideas, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
 
@@ -54,9 +59,9 @@ We appreciate your support in making Flux better!
 
 ---
 
-## 📜 License
+## 📜 **License**
 
-Flux is open-source and licensed under [MIT License](LICENSE).
+Flux is open-source and licensed under the [MIT License](LICENSE).
 
 ---
 
