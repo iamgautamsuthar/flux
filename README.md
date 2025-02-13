@@ -1,27 +1,35 @@
 # Flux - A Minimal Package Manager
 
-Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. Currently, Flux supports basic installation and uninstallation of packages, with more features coming soon.
+Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, and now listing installed packages, Flux is steadily evolving. More features are on the way!
 
 🚧 **Alpha Version**: Flux is still in its early development phase and not yet ready for production use. We welcome contributors to help shape its future!
 
 ---
 
-## 🚀 Features
+## � Features
 
 ### ✅ Implemented
 
 -   **Install Packages**: Download and add packages to `node_modules`.
+
     ```sh
     flux install package-name
     ```
+
 -   **Uninstall Packages**: Remove installed packages from `node_modules`.
+
     ```sh
     flux uninstall package-name
     ```
 
+-   **List Installed Packages**: Display all installed dependencies.
+
+    ```sh
+    flux list
+    ```
+
 ### 🔜 Upcoming Features
 
--   **List Installed Packages** (`flux list`): Show all installed dependencies.
 -   **Update Package** (`flux update package-name`): Update specific or all packages.
 -   **Search for Packages** (`flux search package-name`): Find packages from the registry.
 -   **Check for Updates** (`flux outdated`): List packages with newer versions.
