@@ -47,6 +47,25 @@ Flux is a lightweight package manager designed to simplify dependency management
 
 ---
 
+## **🚀 Beta Version**
+
+If you'd like to try the beta version of Flux, you can download the installer `.exe` from the repository or directly from this link:
+
+-   **Exe Location in Repo**: `flux/install/install_flux.exe`
+-   **Download Link**: [Flux Installer](https://github.com/iamgautamsuthar/flux/releases/download/v0.1.0-alpha/install_flux.exe)
+
+### How to Install:
+
+1. Download the `.exe` file from the link or repository.
+2. **Run it as Admin**. If Windows Defender blocks it, simply click on **"Run anyway"**.
+    - Please note that this warning occurs because we don't have a publisher license. It's completely safe, and you can review the installation script (`install_flux.ps1`) to verify its safety.
+
+### To Update:
+
+-   To get the latest version of Flux, just **reinstall the installer**, and it will automatically update to the latest version.
+
+---
+
 ## 💡 **Contributing**
 
 Flux is open for contributions! If you have ideas, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
