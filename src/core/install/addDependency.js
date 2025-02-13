@@ -8,8 +8,7 @@ const addDependency = (packageName, version) => {
 
     writePackageJson(packageData);
 
-    logger.info(`Added ${packageName}@${version} to dependencies.`);
-    logger.success('Package installed successfully.');
+    logger.success(`Package ${packageName}@${version} installed successfully.`);
 };
 
 export default addDependency;

@@ -15,8 +15,6 @@ const listPackages = async () => {
                 `- ${packageName}@${packageData.dependencies[packageName]}`
             );
         });
-
-        logger.success('Packages listed successfully.');
     } catch (error) {
         logger.error(`Error while listing packages: ${error}`);
         process.exit(1);

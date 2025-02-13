@@ -8,7 +8,6 @@ const deleteDependency = async (packageName) => {
 
     if (fs.existsSync(packagePath)) {
         fs.rmSync(packagePath, { recursive: true });
-        logger.info(`Deleted ${packageName} from node_modules.`);
         logger.success(`Uninstalled ${packageName} successfully.`);
     }
 };

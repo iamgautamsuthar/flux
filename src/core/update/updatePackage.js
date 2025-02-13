@@ -15,7 +15,7 @@ const updatePackage = async (packageName) => {
     }
 
     if (dependencyInfo.dependencies[packageName] == version) {
-        logger.info(`Package ${packageName} is already up to date.`);
+        logger.info(`Package ${packageName}@${version} is already up to date.`);
         return;
     }
 

@@ -24,8 +24,9 @@ const downloadPackage = async (packageName) => {
         const writer = fs.createWriteStream(filePath);
         response.data.pipe(writer);
 
+        logger.info(`Installing package: ${packageName}...`);
+
         writer.on('finish', () => {
-            logger.info(`Package ${packageName} downloaded successfully`);
             extractPackage(packageName, version, filePath);
         });
     } catch (error) {
