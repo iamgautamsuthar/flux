@@ -10,8 +10,10 @@ const listPackages = async () => {
             return;
         }
 
-        packageData.dependencies.forEach((dependency) => {
-            logger.info(`${dependency}`);
+        Object.keys(packageData.dependencies).forEach((packageName) => {
+            logger.package(
+                `- ${packageName}@${packageData.dependencies[packageName]}`
+            );
         });
 
         logger.success('Packages listed successfully.');

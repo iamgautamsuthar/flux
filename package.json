@@ -2,10 +2,10 @@
     "name": "flux",
     "version": "0.1.0",
     "description": "Flux is a simple, lightweight package manager for managing dependencies in your project, allowing easy installation of npm packages.",
-    "main": "./src/index.js",
+    "main": "./bin/flux.js",
     "type": "module",
     "bin": {
-        "flux": "./src/index.js"
+        "flux": "./bin/flux.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",

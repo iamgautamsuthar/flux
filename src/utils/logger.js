@@ -5,6 +5,8 @@ const logger = {
     success: (message) => console.log(chalk.green('[SUCCESS]'), message),
     warning: (message) => console.log(chalk.yellow('[WARNING]'), message),
     error: (message) => console.error(chalk.red('[ERROR]'), message),
+    package: (message) =>
+        console.error(chalk.magentaBright('[PACKAGE]'), message),
 };
 
 export default logger;
