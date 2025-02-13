@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { install, uninstall, list } from '../src/index.js';
+import { install, uninstall, list, update } from '../src/index.js';
 
 const program = new Command();
 
@@ -21,5 +21,10 @@ program
     .action(uninstall);
 
 program.command('list').description('List installed packages').action(list);
+
+program
+    .command('update <package>')
+    .description('Update a package')
+    .action(update);
 
 program.parse(process.argv);
