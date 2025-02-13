@@ -1,5 +1,5 @@
-import { readPackageJson } from '../../utils/fileSystem';
-import logger from '../../utils/logger';
+import { readPackageJson } from '../../utils/fileSystem.js';
+import logger from '../../utils/logger.js';
 
 const listPackages = async () => {
     try {

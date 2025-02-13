@@ -1,5 +1,5 @@
-import logger from '../../utils/logger';
-import { readPackageJson, writePackageJson } from '../../utils/fileSystem';
+import logger from '../../utils/logger.js';
+import { readPackageJson, writePackageJson } from '../../utils/fileSystem.js';
 
 const addDependency = (packageName, version) => {
     const packageData = readPackageJson();
