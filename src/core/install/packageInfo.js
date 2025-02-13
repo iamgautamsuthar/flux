@@ -1,8 +1,9 @@
 import axios from 'axios';
+import config from '../../utils/config';
 
 const getPackageInformation = async (packageName) => {
     try {
-        const url = `https://registry.npmjs.org/${packageName}`;
+        const url = `${config.registry}${packageName}`;
         const response = await axios.get(url);
         return response.data;
     } catch (error) {

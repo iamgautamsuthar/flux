@@ -4,6 +4,7 @@ import path from 'path';
 import getPackageInformation from './packageInfo.js';
 import extractPackage from './extract.js';
 import logger from '../../utils/logger.js';
+import config from '../../utils/config.js';
 
 const currentDir = process.cwd();
 
@@ -12,7 +13,7 @@ const downloadPackage = async (packageName) => {
         const data = await getPackageInformation(packageName);
         const version = data['dist-tags'].latest;
         const tarballUrl =
-            `https://registry.npmjs.org/${packageName}/-/` +
+            `${config.registry}${packageName}/-/` +
             `${packageName}-${version}.tgz`;
 
         const response = await axios({
