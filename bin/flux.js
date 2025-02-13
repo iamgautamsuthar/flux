@@ -12,18 +12,25 @@ program
 
 program
     .command('install <package>')
+    .aliases(['i', 'add'])
     .description('Install a package from npm registry')
     .action(install);
 
 program
     .command('uninstall <package>')
+    .aliases(['remove', 'rm', 'delete'])
     .description('Uninstall a package')
     .action(uninstall);
 
-program.command('list').description('List installed packages').action(list);
+program
+    .command('list')
+    .aliases(['ls', 'show'])
+    .description('List installed packages')
+    .action(list);
 
 program
     .command('update <package>')
+    .aliases(['up', 'upgrade'])
     .description('Update a package')
     .action(update);
 
