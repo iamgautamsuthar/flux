@@ -1,7 +1,8 @@
 import removeDependency from '../core/uninstall/removeDependency.js';
+import logger from '../utils/logger.js';
 
 const uninstall = async (packageName) => {
-    console.log(`Uninstalling package: ${packageName}...`);
+    logger.info(`Uninstalling package: ${packageName}...`);
     removeDependency(packageName);
 };
 

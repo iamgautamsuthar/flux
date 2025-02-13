@@ -6,7 +6,7 @@ const getPackageInformation = async (packageName) => {
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
-        console.log(`Error while fetching package information: ${error}`);
+        logger.error(`Error while fetching package information: ${error}`);
         process.exit(1);
     }
 };

@@ -2,6 +2,7 @@ import * as tar from 'tar';
 import fs from 'fs';
 import path from 'path';
 import addDependency from './addDependency.js';
+import logger from '../../utils/logger.js';
 
 const currentDir = process.cwd();
 
@@ -19,16 +20,14 @@ const extractPackage = async (packageName, version, filePath) => {
         }
 
         await tar.x({ file: filePath, C: extractPath, strip: 1 });
-        // console.log(`Package ${packageName} extracted successfully.`);
         addDependency(packageName, version);
         try {
             fs.unlinkSync(filePath);
-            // console.log('File deleted successfully.');
         } catch (err) {
-            console.error('Error deleting file:', err);
+            logger.error(`Error while deleting package: ${err}`);
         }
     } catch (error) {
-        console.log(`Error while extracting package: ${error}`);
+        logger.error(`Error while extracting package: ${error}`);
         process.exit(1);
     }
 };

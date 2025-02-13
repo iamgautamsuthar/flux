@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import deleteDependency from './deleteDependency.js';
+import logger from '../../utils/logger.js';
 
 const currentDir = process.cwd();
 
@@ -15,7 +16,7 @@ const removeDependency = (packageName) => {
     }
 
     if (!packageData.dependencies || !packageData.dependencies[packageName]) {
-        console.log(`Package ${packageName} not found in dependencies.`);
+        logger.error(`Package ${packageName} not found in dependencies.`);
         process.exit(1);
     }
 
@@ -26,7 +27,7 @@ const removeDependency = (packageName) => {
         JSON.stringify(packageData, null, 2),
         'utf8'
     );
-    console.log(`Removed ${packageName} from dependencies.`);
+    logger.info(`Package ${packageName} removed from dependencies.`);
     deleteDependency(packageName);
 };
 

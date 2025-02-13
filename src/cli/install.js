@@ -1,7 +1,8 @@
 import downloadPackage from '../core/install/download.js';
+import logger from '../utils/logger.js';
 
 const install = (packageName) => {
-    console.log(`Installing package: ${packageName}...`);
+    logger.info(`Installing package: ${packageName}...`);
     downloadPackage(packageName);
 };
 

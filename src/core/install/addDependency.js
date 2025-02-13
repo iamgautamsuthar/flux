@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import logger from '../../utils/logger';
 
 const currentDir = process.cwd();
 
@@ -23,7 +24,8 @@ const addDependency = (packageName, version) => {
         JSON.stringify(packageData, null, 2),
         'utf8'
     );
-    console.log(`Added ${packageName}@${version} to dependencies.`);
+    logger.info(`Added ${packageName}@${version} to dependencies.`);
+    logger.success('Package installed successfully.');
 };
 
 export default addDependency;

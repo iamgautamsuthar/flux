@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import logger from '../../utils/logger';
 
 const currentDir = process.cwd();
 const deleteDependency = async (packageName) => {
@@ -7,7 +8,8 @@ const deleteDependency = async (packageName) => {
 
     if (fs.existsSync(packagePath)) {
         fs.rmSync(packagePath, { recursive: true });
-        console.log(`Deleted ${packageName} from node_modules.`);
+        logger.info(`Deleted ${packageName} from node_modules.`);
+        logger.success(`Uninstalled ${packageName} successfully.`);
     }
 };
 
