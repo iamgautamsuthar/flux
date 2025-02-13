@@ -1,19 +1,9 @@
-import path from 'path';
-import fs from 'fs';
 import deleteDependency from './deleteDependency.js';
 import logger from '../../utils/logger.js';
-
-const currentDir = process.cwd();
+import { readPackageJson, writePackageJson } from '../../utils/fileSystem.js';
 
 const removeDependency = (packageName) => {
-    const packageJsonPath = path.join(currentDir, 'package.json');
-
-    let packageData = {};
-
-    if (fs.existsSync(packageJsonPath)) {
-        const fileContent = fs.readFileSync(packageJsonPath, 'utf8');
-        packageData = JSON.parse(fileContent);
-    }
+    const packageData = readPackageJson();
 
     if (!packageData.dependencies || !packageData.dependencies[packageName]) {
         logger.error(`Package ${packageName} not found in dependencies.`);
@@ -22,12 +12,10 @@ const removeDependency = (packageName) => {
 
     delete packageData.dependencies[packageName];
 
-    fs.writeFileSync(
-        packageJsonPath,
-        JSON.stringify(packageData, null, 2),
-        'utf8'
-    );
+    writePackageJson(packageData);
+
     logger.info(`Package ${packageName} removed from dependencies.`);
+
     deleteDependency(packageName);
 };
 
