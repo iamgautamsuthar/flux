@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { install, uninstall } from '../src/index.js';
+import { install, uninstall, list } from '../src/index.js';
 
 const program = new Command();
 
@@ -19,5 +19,7 @@ program
     .command('uninstall <package>')
     .description('Uninstall a package')
     .action(uninstall);
+
+program.command('list').description('List installed packages').action(list);
 
 program.parse(process.argv);
