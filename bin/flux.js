@@ -8,6 +8,7 @@ import {
     update,
     updateAll,
     reinstall,
+    reinstallAll,
 } from '../src/index.js';
 
 const program = new Command();
@@ -51,6 +52,13 @@ program
     .command('reinstall <package>')
     .aliases(['re', 're-i'])
     .description('Reinstall a package')
-    .action(reinstall);
+    .action((packageName) => {
+        if (packageName === 'all') {
+            reinstallAll();
+            return;
+        } else {
+            reinstall(packageName);
+        }
+    });
 
 program.parse(process.argv);
