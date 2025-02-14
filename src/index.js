@@ -3,5 +3,6 @@ import uninstall from './cli/uninstall.js';
 import list from './cli/list.js';
 import update from './cli/update.js';
 import updateAll from './cli/updateAll.js';
+import reinstall from './cli/reInstall.js';
 
-export { install, uninstall, list, update, updateAll };
+export { install, uninstall, list, update, updateAll, reinstall };
