@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { install, uninstall, list, update, updateAll } from '../src/index.js';
+import {
+    install,
+    uninstall,
+    list,
+    update,
+    updateAll,
+    reinstall,
+    reinstallAll,
+} from '../src/index.js';
 
 const program = new Command();
 
@@ -37,6 +45,19 @@ program
             updateAll();
         } else {
             update(packageName);
+        }
+    });
+
+program
+    .command('reinstall <package>')
+    .aliases(['re', 're-i'])
+    .description('Reinstall a package')
+    .action((packageName) => {
+        if (packageName === 'all') {
+            reinstallAll();
+            return;
+        } else {
+            reinstall(packageName);
         }
     });
 

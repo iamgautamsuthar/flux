@@ -1,8 +1,19 @@
 # **Flux - A Minimal Package Manager**
 
-Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, listing installed packages, and now updating packages, Flux is steadily evolving. More features are on the way!
+Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, listing installed packages, updating packages, and now reinstalling packages, Flux is steadily evolving. More features are on the way!
 
 🚧 **Alpha Version**: Flux is still in its early development phase and not yet ready for production use. We welcome contributors to help shape its future!
+
+---
+
+## **Table of Contents**
+
+-   [Features](#-features)
+    -   [Implemented](#-implemented)
+    -   [Upcoming Features](#-upcoming-features)
+-   [Alpha Version](#-alpha-version)
+-   [Contributing](#-contributing)
+-   [License](#-license)
 
 ---
 
@@ -40,11 +51,22 @@ Flux is a lightweight package manager designed to simplify dependency management
     flux update all
     ```
 
+-   **Reinstall a Package**: Reinstall a specific package.
+
+    ```sh
+    flux reinstall package-name
+    ```
+
+-   **Reinstall All Packages**: Reinstall all packages in `node_modules`.
+
+    ```sh
+    flux reinstall all
+    ```
+
 ### 🔜 **Upcoming Features**
 
 -   **Search for Packages** (`flux search package-name`): Find packages from the registry.
 -   **Check for Updates** (`flux outdated`): List packages with newer versions.
--   **Reinstall All Packages** (`flux reinstall`): Remove `node_modules` and reinstall dependencies.
 -   **Global Package Management** (`flux global install package-name`): Install packages globally.
 -   **Dependency Tree Viewer** (`flux tree`): View package dependency hierarchy.
 -   **Lockfile Support**: Ensure deterministic installs.
@@ -72,7 +94,7 @@ If you'd like to try the alpha version of Flux, you can download the installer `
 
 ---
 
-## 💡 **Contributing**
+## **💡 Contributing**
 
 Flux is open for contributions! If you have ideas, bug fixes, or feature requests, feel free to open an issue or submit a pull request.
 
@@ -84,7 +106,13 @@ We appreciate your support in making Flux better!
 
 ---
 
-## 📜 **License**
+## **🌟 Get Started with Flux**
+
+Ready to simplify your dependency management? Download the alpha version now and join the Flux community! Your feedback and contributions are invaluable as we build the next-generation package manager.
+
+---
+
+## **📜 License**
 
 Flux is open-source and licensed under the [MIT License](LICENSE).
 
