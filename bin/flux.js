@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { install, uninstall, list, update } from '../src/index.js';
+import { install, uninstall, list, update, updateAll } from '../src/index.js';
 
 const program = new Command();
 
@@ -32,6 +32,12 @@ program
     .command('update <package>')
     .aliases(['up', 'upgrade'])
     .description('Update a package')
-    .action(update);
+    .action((packageName) => {
+        if (packageName === 'all') {
+            updateAll();
+        } else {
+            update(packageName);
+        }
+    });
 
 program.parse(process.argv);
