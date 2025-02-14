@@ -34,6 +34,12 @@ Flux is a lightweight package manager designed to simplify dependency management
     flux update package-name
     ```
 
+-   **Update All Packages**: Update all installed packages to their latest versions.
+
+    ```sh
+    flux update all
+    ```
+
 ### 🔜 **Upcoming Features**
 
 -   **Search for Packages** (`flux search package-name`): Find packages from the registry.
@@ -47,9 +53,9 @@ Flux is a lightweight package manager designed to simplify dependency management
 
 ---
 
-## **🚀 Beta Version**
+## **🚀 Alpha Version**
 
-If you'd like to try the beta version of Flux, you can download the installer `.exe` from the repository or directly from this link:
+If you'd like to try the alpha version of Flux, you can download the installer `.exe` from the repository or directly from this link:
 
 -   **Exe Location in Repo**: `flux/install/install_flux.exe`
 -   **Download Link**: [Flux Installer](https://github.com/iamgautamsuthar/flux/releases/download/v0.1.0-alpha/install_flux.exe)
