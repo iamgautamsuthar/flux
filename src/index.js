@@ -5,5 +5,15 @@ import update from './cli/update.js';
 import updateAll from './cli/updateAll.js';
 import reinstall from './cli/reInstall.js';
 import reinstallAll from './cli/reinstallAll.js';
+import uninstallAll from './cli/uninstallAll.js';
 
-export { install, uninstall, list, update, updateAll, reinstall, reinstallAll };
+export {
+    install,
+    uninstall,
+    uninstallAll,
+    list,
+    update,
+    updateAll,
+    reinstall,
+    reinstallAll,
+};

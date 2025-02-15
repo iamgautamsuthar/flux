@@ -9,6 +9,7 @@ import {
     updateAll,
     reinstall,
     reinstallAll,
+    uninstallAll,
 } from '../src/index.js';
 
 const program = new Command();
@@ -28,7 +29,13 @@ program
     .command('uninstall <package>')
     .aliases(['remove', 'rm', 'delete'])
     .description('Uninstall a package')
-    .action(uninstall);
+    .action((packageName) => {
+        if (packageName === 'all') {
+            uninstallAll();
+        } else {
+            uninstall(packageName);
+        }
+    });
 
 program
     .command('list')

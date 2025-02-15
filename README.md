@@ -33,6 +33,12 @@ Flux is a lightweight package manager designed to simplify dependency management
     flux uninstall package-name
     ```
 
+-   **Uninstall All Packages**: Remove all installed packages from `node_modules`.
+
+    ```sh
+    flux uninstall all
+    ```
+
 -   **List Installed Packages**: Display all installed dependencies.
 
     ```sh
