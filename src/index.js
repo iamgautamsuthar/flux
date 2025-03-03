@@ -6,6 +6,7 @@ import updateAll from './cli/updateAll.js';
 import reinstall from './cli/reInstall.js';
 import reinstallAll from './cli/reinstallAll.js';
 import uninstallAll from './cli/uninstallAll.js';
+import outdated from './cli/outdated.js';
 
 export {
     install,
@@ -16,4 +17,5 @@ export {
     updateAll,
     reinstall,
     reinstallAll,
+    outdated,
 };

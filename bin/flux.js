@@ -10,6 +10,7 @@ import {
     reinstall,
     reinstallAll,
     uninstallAll,
+    outdated,
 } from '../src/index.js';
 
 const program = new Command();
@@ -67,5 +68,11 @@ program
             reinstall(packageName);
         }
     });
+
+program
+    .command('outdated')
+    .alias(['out, old, new'])
+    .description('List outdated packages')
+    .action(outdated);
 
 program.parse(process.argv);
