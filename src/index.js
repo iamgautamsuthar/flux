@@ -7,6 +7,7 @@ import reinstall from './cli/reInstall.js';
 import reinstallAll from './cli/reinstallAll.js';
 import uninstallAll from './cli/uninstallAll.js';
 import outdated from './cli/outdated.js';
+import search from './cli/search.js';
 
 export {
     install,
@@ -18,4 +19,5 @@ export {
     reinstall,
     reinstallAll,
     outdated,
+    search,
 };

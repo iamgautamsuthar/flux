@@ -11,6 +11,7 @@ import {
     reinstallAll,
     uninstallAll,
     outdated,
+    search,
 } from '../src/index.js';
 
 const program = new Command();
@@ -71,8 +72,13 @@ program
 
 program
     .command('outdated')
-    .alias(['out, old, new'])
+    .aliases(['out, old, new'])
     .description('List outdated packages')
     .action(outdated);
 
+program
+    .command('search <package>')
+    .aliases(['s, sr'])
+    .description('Search info about package')
+    .action(search);
 program.parse(process.argv);

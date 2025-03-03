@@ -2,7 +2,7 @@
 
 Flux is a lightweight package manager designed to simplify dependency management for JavaScript projects. With support for basic package installation, uninstallation, listing installed packages, updating packages, and now reinstalling packages, Flux is steadily evolving. More features are on the way!
 
-🍯 **Alpha Version**: Flux is still in its early development phase and not yet ready for production use. We welcome contributors to help shape its future!
+🚧 **Alpha Version**: Flux is still in its early development phase and not yet ready for production use. We welcome contributors to help shape its future!
 
 ---
 
@@ -69,15 +69,20 @@ Flux is a lightweight package manager designed to simplify dependency management
     flux reinstall all
     ```
 
--   **Check for Outdated Packages**: List installed packages with available updates.
+-   **Check for Updates**: List packages with newer versions available.
 
     ```sh
     flux outdated
     ```
 
+-   **Search for Packages**: Find packages from the registry.
+
+    ```sh
+    flux search package-name
+    ```
+
 ### 🔜 **Upcoming Features**
 
--   **Search for Packages** (`flux search package-name`): Find packages from the registry.
 -   **Global Package Management** (`flux global install package-name`): Install packages globally.
 -   **Dependency Tree Viewer** (`flux tree`): View package dependency hierarchy.
 -   **Lockfile Support**: Ensure deterministic installs.
@@ -123,7 +128,7 @@ Ready to simplify your dependency management? Download the alpha version now and
 
 ---
 
-## **📝 License**
+## **📜 License**
 
 Flux is open-source and licensed under the [MIT License](LICENSE).
 
