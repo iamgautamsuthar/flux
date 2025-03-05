@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { Command } from 'commander';
 import {
     install,
@@ -14,12 +16,22 @@ import {
     search,
 } from '../src/index.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(
+    readFileSync(join(__dirname, '../package.json'), 'utf8')
+);
+
 const program = new Command();
 
 program
     .name('flux')
     .description('A minimal package manager for JavaScript')
-    .version('0.1.0');
+    .version(
+        packageJson.version,
+        '-v, --version',
+        'output the current version'
+    );
 
 program
     .command('install <package>')
@@ -72,13 +84,23 @@ program
 
 program
     .command('outdated')
-    .aliases(['out, old, new'])
+    .aliases(['out', 'old', 'new'])
     .description('List outdated packages')
     .action(outdated);
 
 program
     .command('search <package>')
-    .aliases(['s, sr'])
+    .aliases(['s', 'sr'])
     .description('Search info about package')
     .action(search);
+
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
+
+process.on('SIGINT', () => {
+    console.log('\nExiting Flux...');
+    process.exit(0);
+});
+
 program.parse(process.argv);
