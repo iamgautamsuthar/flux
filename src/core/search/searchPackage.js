@@ -3,7 +3,7 @@ import getPackageInformation from '../install/packageInfo.js';
 
 const searchPackage = async (packageName) => {
     try {
-        const packageInfo = getPackageInformation(packageName);
+        const packageInfo = await getPackageInformation(packageName);
         if (!packageInfo) {
             logger.error(`${packageName} does not exists.`);
             process.exit(1);

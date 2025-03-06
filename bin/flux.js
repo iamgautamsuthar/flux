@@ -94,9 +94,10 @@ program
     .description('Search info about package')
     .action(search);
 
-if (!process.argv.slice(2).length) {
-    program.outputHelp();
-}
+// ? SHOW HELP
+// if (!process.argv.slice(2).length) {
+//     program.outputHelp();
+// }
 
 process.on('SIGINT', () => {
     console.log('\nExiting Flux...');
