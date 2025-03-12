@@ -1,5 +1,5 @@
-import { readPackageJson, removePackageFromModule, writePackageJson } from './fileSystem';
-import logger from './logger';
+import { readPackageJson, writePackageJson } from './fileSystem.js';
+import logger from './logger.js';
 
 export const addPackageToJson = async (packageName, version) => {
     try {

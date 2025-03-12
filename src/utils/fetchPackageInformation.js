@@ -1,6 +1,6 @@
 import axios from 'axios';
 import logger from './logger.js';
-import config from '../config.js';
+import { config } from '../config.js';
 
 const MAX_RETRIES = 3;
 const BASE_DELAY = 1000;

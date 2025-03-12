@@ -1,7 +1,7 @@
-import { fetchPackageInformation } from '../../utils/fetchPackageInformation.js';
-import { readPackageJson } from '../../utils/fileSystem.js';
-import logger from '../../utils/logger.js';
-import { checkIfAnyPackagesExist } from '../../utils/packageJson.js';
+import { readPackageJson } from '../utils/fileSystem.js';
+import { fetchPackageInformation } from '../utils/fetchPackageInformation.js';
+import logger from '../utils/logger.js';
+import { checkIfAnyPackagesExist } from '../utils/packageJson.js';
 
 export const outdated = async () => {
     try {

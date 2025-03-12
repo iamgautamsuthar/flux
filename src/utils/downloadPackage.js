@@ -3,7 +3,7 @@ import { pipeline } from 'stream';
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
-import config from '../config.js';
+import { config } from '../config.js';
 import logger from './logger.js';
 
 const pipelineAsync = promisify(pipeline);

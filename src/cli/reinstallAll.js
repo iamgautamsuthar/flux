@@ -1,7 +1,7 @@
-import { readPackageJson } from '../utils/fileSystem';
+import { readPackageJson } from '../utils/fileSystem.js';
 import logger from '../utils/logger.js';
 import { checkIfAnyPackagesExist } from '../utils/packageJson.js';
-import reinstall from './reinstall.js';
+import { reinstall } from './reinstall.js';
 
 export const reinstallAll = async () => {
     try {

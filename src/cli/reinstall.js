@@ -1,5 +1,4 @@
-import { removePackageFromModule } from '../utils/fileSystem';
-import logger from '../utils/logger';
+import { removePackageFromModule } from '../utils/fileSystem.js';
 import { checkIfPackageExists } from '../utils/packageJson.js';
 import { install } from './install.js';
 import logger from '../utils/logger.js';
