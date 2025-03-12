@@ -1,7 +1,17 @@
-import reinstallPackage from '../core/reinstall/reinstallPackage.js';
+import { removePackageFromModule } from '../utils/fileSystem';
+import logger from '../utils/logger';
+import { checkIfPackageExists } from '../utils/packageJson.js';
+import { install } from './install.js';
+import logger from '../utils/logger.js';
 
-const reinstall = (packageName) => {
-    reinstallPackage(packageName);
+export const reinstall = async (packageName) => {
+    try {
+        await checkIfPackageExists(packageName);
+        logger.info(`Reinstalling ${packageName}...`);
+        await removePackageFromModule(packageName);
+        await install(packageName);
+    } catch (error) {
+        logger.error(`Error while reinstalling package: ${error.message}`);
+        process.exit(1);
+    }
 };
-
-export default reinstall;

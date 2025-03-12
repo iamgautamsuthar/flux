@@ -52,3 +52,20 @@ export const extractPackage = async (packageName, filePath) => {
         }
     }
 };
+
+export const removePackageFromModule = async (packageName) => {
+    try {
+        const packagePath = path.join(currentDir, 'node_modules', packageName);
+        try {
+            await fs.access(packagePath);
+        } catch (error) {
+            logger.error(`Package ${packageName} is not found.`);
+            process.exit(1);
+        }
+
+        await fs.promises.rm(packagePath, { recursive: true, force: true });
+    } catch (error) {
+        logger.error(`Error while deleting package: ${error}`);
+        process.exit(1);
+    }
+};

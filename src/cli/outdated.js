@@ -1,11 +1,11 @@
 import { fetchPackageInformation } from '../../utils/fetchPackageInformation.js';
 import { readPackageJson } from '../../utils/fileSystem.js';
 import logger from '../../utils/logger.js';
-import { checkIfAnyPackages } from '../../utils/packageJson.js';
+import { checkIfAnyPackagesExist } from '../../utils/packageJson.js';
 
-const outdated = () => {
+export const outdated = async () => {
     try {
-        checkIfAnyPackages();
+        await checkIfAnyPackagesExist();
         let isAnyUpdate = false;
         const packageJson = readPackageJson();
 
@@ -30,5 +30,3 @@ const outdated = () => {
         process.exit(1);
     }
 };
-
-export default outdated;

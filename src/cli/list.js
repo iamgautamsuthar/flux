@@ -1,11 +1,11 @@
 import { readPackageJson } from '../utils/fileSystem.js';
 import logger from '../utils/logger.js';
-import { checkIfAnyPackages } from '../utils/packageJson.js';
+import { checkIfAnyPackagesExist } from '../utils/packageJson.js';
 
-const list = () => {
+export const list = async () => {
     try {
         const packageJson = readPackageJson();
-        checkIfAnyPackages();
+        await checkIfAnyPackagesExist();
         logger.info('Dependencies:');
         Object.keys(packageJson.dependencies).forEach((packageName) => {
             logger.package(`- ${packageName}@${packageJson.dependencies[packageName]}`);
@@ -24,5 +24,3 @@ const list = () => {
         process.exit(1);
     }
 };
-
-export default list;

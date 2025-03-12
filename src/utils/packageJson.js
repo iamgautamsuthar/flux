@@ -1,4 +1,4 @@
-import { readPackageJson, writePackageJson } from './fileSystem';
+import { readPackageJson, removePackageFromModule, writePackageJson } from './fileSystem';
 import logger from './logger';
 
 export const addPackageToJson = async (packageName, version) => {
@@ -11,7 +11,7 @@ export const addPackageToJson = async (packageName, version) => {
     }
 };
 
-export const checkIfAnyPackages = async () => {
+export const checkIfAnyPackagesExist = async () => {
     try {
         const packageJson = await readPackageJson();
         if (!packageJson.dependencies || Object.keys(packageJson.dependencies).length === 0) {
@@ -20,5 +20,31 @@ export const checkIfAnyPackages = async () => {
         }
     } catch (error) {
         logger.error(`Error while checking package.json: ${error}`);
+    }
+};
+
+export const checkIfPackageExists = async (packageName) => {
+    try {
+        const packageJson = await readPackageJson();
+        if (!packageJson.dependencies || !packageJson.dependencies[packageName]) {
+            logger.error(`Package ${packageName} is not found.`);
+            process.exit(1);
+        }
+    } catch (error) {
+        logger.error(`Error while checking package.json: ${error}`);
+    }
+};
+
+export const removePackageFromJson = async (packageName) => {
+    try {
+        const packageJson = await readPackageJson();
+        if (!packageJson.dependencies || !packageJson.dependencies[packageName]) {
+            logger.error(`Package ${packageName} is not found.`);
+            process.exit(1);
+        }
+        delete packageJson.dependencies[packageName];
+        await writePackageJson(packageJson);
+    } catch (error) {
+        logger.error(`Error while removing package from package json : ${error}`);
     }
 };

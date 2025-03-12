@@ -1,7 +1,19 @@
-import reinstallAllPackages from '../core/reinstall/reinstallAllPackages.js';
+import { readPackageJson } from '../utils/fileSystem';
+import logger from '../utils/logger.js';
+import { checkIfAnyPackagesExist } from '../utils/packageJson.js';
+import reinstall from './reinstall.js';
 
-const reinstallAll = (packageName) => {
-    reinstallAllPackages(packageName);
+export const reinstallAll = async () => {
+    try {
+        await checkIfAnyPackagesExist();
+        logger.info('Reinstalling all packages...');
+        const packageJson = readPackageJson();
+        const dependencies = packageJson.dependencies;
+        await checkIfAnyPackagesExist();
+        for (const dependency in dependencies) {
+            await reinstall(dependency);
+        }
+    } catch (error) {
+        logger.error(`Error while reinstalling packages: ${error.message}`);
+    }
 };
-
-export default reinstallAll;
