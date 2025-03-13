@@ -1,4 +1,5 @@
 import { fetchPackageInformation } from '../utils/fetchPackageInformation.js';
+import { readPackageJson } from '../utils/fileSystem.js';
 import logger from '../utils/logger.js';
 import { checkIfPackageExists } from '../utils/packageJson.js';
 import { install } from './install.js';
@@ -9,7 +10,7 @@ export const update = async (packageName) => {
         await checkIfPackageExists(packageName);
         const data = await fetchPackageInformation(packageName);
         const latestVersion = data['dist-tags'].latest;
-        const packageJson = readPackageJson();
+        const packageJson = await readPackageJson();
         const currentVersion = packageJson.dependencies[packageName];
         if (currentVersion == latestVersion) {
             logger.info(`Package ${packageName}@${latestVersion} is already up to date.`);

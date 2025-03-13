@@ -7,10 +7,10 @@ export const outdated = async () => {
     try {
         await checkIfAnyPackagesExist();
         let isAnyUpdate = false;
-        const packageJson = readPackageJson();
+        const packageJson = await readPackageJson();
 
-        Object.keys(packageJson.dependencies).forEach((packageName) => {
-            const packageInfo = fetchPackageInformation(packageName);
+        Object.keys(packageJson.dependencies).forEach(async (packageName) => {
+            const packageInfo = await fetchPackageInformation(packageName);
             const latestVersion = packageInfo['dist-tags'].latest;
             const currentVersion = packageJson.dependencies[packageName];
 
