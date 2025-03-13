@@ -45,7 +45,7 @@ export const extractPackage = async (packageName, filePath) => {
         process.exit(1);
     } finally {
         try {
-            await fs.unlink(filePath);
+            await fs.promises.unlink(filePath);
         } catch (err) {
             logger.warning(`Could not delete tarball ${filePath}: ${err.message}`);
             process.exit(1);
