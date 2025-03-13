@@ -4,7 +4,7 @@ import logger from './logger.js';
 export const addPackageToJson = async (packageName, version) => {
     try {
         const packageJson = await readPackageJson();
-        packageData.dependencies[packageName] = version;
+        packageJson.dependencies[packageName] = version;
         writePackageJson(packageJson);
     } catch (error) {
         logger.error(`Error while adding package to package.json: ${error}`);
