@@ -27,6 +27,7 @@ export const checkIfPackageExists = async (packageName) => {
     try {
         const packageJson = await readPackageJson();
         if (!packageJson.dependencies || !packageJson.dependencies[packageName]) {
+            // console.log(packageJson);
             logger.error(`Package ${packageName} is not found.`);
             process.exit(1);
         }
