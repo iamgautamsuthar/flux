@@ -13,7 +13,9 @@ export const readPackageJson = async () => {
         return { ...packageData, dependencies: packageData.dependencies || {} };
     } catch (error) {
         if (error.code === 'ENOENT') {
-            logger.error('package.json not found in the current directory.');
+            // logger.error('package.json not found in the current directory.');
+            await fs.promises.writeFile(packageJsonPath, JSON.stringify({ dependencies: {} }, null, 2), 'utf8');
+            return { dependencies: {} };
         } else {
             logger.error(`Error while reading package.json: ${error}`);
         }
